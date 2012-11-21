@@ -11,7 +11,8 @@ background: -o-radial-gradient(center, ellipse cover,  #d5b7a2 0%,#c8b09f 75%,#6
 background: -ms-radial-gradient(center, ellipse cover,  #d5b7a2 0%,#c8b09f 75%,#636466 100%);
 background: radial-gradient(ellipse at center,  #d5b7a2 0%,#c8b09f 75%,#636466 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d5b7a2', endColorstr='#636466',GradientType=1 );
-
+  min-height: 890px;
+  max-width: 80%;
 }
 
 h1
@@ -49,4 +50,9 @@ text-align:justify;
 #description
 {
     height: 100%;
+    max-width:110%;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size:1.7em;
+	padding-top:25px;
+	text-align:justify;
 }
