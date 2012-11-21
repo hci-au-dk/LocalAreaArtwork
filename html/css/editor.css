@@ -11,7 +11,6 @@ background: -o-radial-gradient(center, ellipse cover,  #d5b7a2 0%,#c8b09f 75%,#6
 background: -ms-radial-gradient(center, ellipse cover,  #d5b7a2 0%,#c8b09f 75%,#636466 100%);
 background: radial-gradient(ellipse at center,  #d5b7a2 0%,#c8b09f 75%,#636466 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d5b7a2', endColorstr='#636466',GradientType=1 );
-
 }
 
 h1
@@ -62,18 +61,10 @@ text-align:justify;
 
 textarea
 {
-width:850px;
-height:900px;
+width:650px;
+height:750px;
 margin-bottom:10px;
 background-color:rgb(235,219,205);
 font-family: Arial, Helvetica, sans-serif;
 font-size:1.7em;
-}
-
-input[type="button"]
-{
-width:120px;
-margin-left:35px;
-display:block;
-
 }
