@@ -1,0 +1,13 @@
+{
+  "name": "artwork",
+  "version": "0.0.1",
+  "description": "Local Area Artwork",
+  "keywords": ["pit", "hci", "cs.au.dk"],
+  "homepage": "",
+  "author": "Clemens N. Klokmose <clemens@cs.au.dk>, Anna Maria Polli <ampo@cs.au.dk>",
+  "dependencies": {
+    "express": "*",
+    "socket.io": "*",
+    "share": "*"
+  }
+}
