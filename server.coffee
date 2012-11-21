@@ -6,9 +6,11 @@ class ArtServer
     constructor: () ->
         @app = @setupExpress()
         server = http.createServer @app
-        server.listen 8000
+        server.listen 80
         options = {'db': {'type': 'none'}}
         sharejs.attach @app, options
+        @app.get '*', (req, res) ->
+            res.redirect 'editor.html'
     
     setupExpress: () ->
         app = express()
