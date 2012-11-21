@@ -11,8 +11,9 @@ reloadDocInfo = () ->
     $('#material').append doc.snapshot.material
     
 reloadDescription = (text) ->
+    html = markDownConverter.makeHtml text
     $('#description').empty()
-    $('#description').append text
+    $('#description').append html
 
 loadText = () ->
     reloadDocInfo()
@@ -25,6 +26,7 @@ loadText = () ->
             reloadDescription(desc.snapshot)
 
 $(document).ready () ->
+    root.markDownConverter = new Markdown.Converter()
     sharejs.open 'artwork', 'json', (error, doc) ->
         if not doc.snapshot?
             newDoc = {
