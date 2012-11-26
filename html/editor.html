@@ -17,6 +17,7 @@
 <script src="/share/json.js"></script>
 <script src="/share/textarea.js"></script>
 <script src="lib/editor.js"></script>
+
 <body>
 
 <div>
@@ -26,8 +27,21 @@
 <h2><span id='artist'>Edvard Munch</span>, <span id='year'>1885</span></h2>
 <h3 id="material">Oil paint</h3>
 
-<div class="block"><textarea rows="400" cols="100" id="description"></textarea>
+<input disabled  maxlength="3" size="3" value="1000" id="counter"><small>Characters remaining</small>
+<div class="block"><textarea rows="400" cols="100" onkeyup="textCounter(this,'counter',1000);" id="description"></textarea>
 </div>
+<script>
+function textCounter(field,field2,maxlimit)
+{
+ var countfield = document.getElementById(field2);
+ if ( field.value.length > maxlimit ) {
+  field.value = field.value.substring( 0, maxlimit );
+  return false;
+ } else {
+  countfield.value = maxlimit - field.value.length;
+ }
+}
+</script>
 
 </div>
 </fieldset>
