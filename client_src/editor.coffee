@@ -5,8 +5,6 @@ reloadDocInfo = () ->
     $('#title').append doc.snapshot.title
     $('#artist').empty()
     $('#artist').append doc.snapshot.artist
-    $('#year').empty()
-    $('#year').append doc.snapshot.year
     $('#material').empty()
     $('#material').append doc.snapshot.material
     
@@ -21,14 +19,14 @@ loadText = () ->
         desc.attach_textarea elem
 
 $(document).ready () ->
-    sharejs.open 'artwork', 'json', (error, doc) ->
+    sharejs.open 'himmelbjerget', 'json', (error, doc) ->
         if not doc.snapshot?
             newDoc = {
-                'title': 'The Sick Child'
-                'artist': 'Edvard Munch'
-                'year': '1885'
+                'title': 'Himmelbjerget'
+                'artist': 'Unknown artist'
+                'year': 'Unknown'
                 'material': 'Oil on canvas'
-                'description': 'artworkDescription'
+                'description': 'description'
             }
             doc.set newDoc, (error, rev) ->
                 if error?

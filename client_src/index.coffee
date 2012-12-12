@@ -5,15 +5,14 @@ reloadDocInfo = () ->
     $('#title').append doc.snapshot.title
     $('#artist').empty()
     $('#artist').append doc.snapshot.artist
-    $('#year').empty()
-    $('#year').append doc.snapshot.year
     $('#material').empty()
     $('#material').append doc.snapshot.material
     
 reloadDescription = (text) ->
-    html = markDownConverter.makeHtml text
+    #html = markDownConverter.makeHtml text
+    text = text.replace /(<([^>]+)>)/ig, ""
     $('#description').empty()
-    $('#description').append html
+    $('#description').append text
 
 loadText = () ->
     reloadDocInfo()
@@ -27,21 +26,20 @@ loadText = () ->
 
 $(document).ready () ->
     root.markDownConverter = new Markdown.Converter()
-    sharejs.open 'artwork', 'json', (error, doc) ->
+    sharejs.open 'himmelbjerget', 'json', (error, doc) ->
         if not doc.snapshot?
             newDoc = {
-                'title': 'The Sick Child'
-                'artist': 'Edvard Munch'
-                'year': '1885'
+                'title': 'Himmelbjerget'
+                'artist': 'Unknown artist'
+                'year': 'Unknown'
                 'material': 'Oil on canvas'
-                'description': 'artworkDescription'
+                'description': 'description'
             }
             doc.set newDoc, (error, rev) ->
                 if error?
                     console.log error
                 else
                     root.doc = doc
-                    console.log "HELLO"
                     loadText()
         else
             root.doc = doc
