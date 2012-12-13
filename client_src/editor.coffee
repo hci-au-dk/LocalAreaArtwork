@@ -1,25 +1,28 @@
 root = exports ? window
 
-reloadDocInfo = () ->
-    $('#title').empty()
-    $('#title').append doc.snapshot.title
-    $('#artist').empty()
-    $('#artist').append doc.snapshot.artist
-    $('#material').empty()
-    $('#material').append doc.snapshot.material
+reloadDocInfo = ($scope) ->
+    $scope.title = doc.snapshot.title
+    $scope.$apply()
     
-loadText = () ->
-    reloadDocInfo()
+updateCount = ($scope, desc) ->
+    $scope.count = 1000 - desc.snapshot.length
+    $scope.$apply()
+    
+loadText = ($scope) ->
+    reloadDocInfo $scope
     doc.on 'remoteop', (op) ->
-        reloadDocInfo()
+        reloadDocInfo $scope
     
     sharejs.open doc.snapshot.description, 'text', (error, desc) ->
         elem = document.getElementById 'description'
-        console.log elem
         desc.attach_textarea elem
+        updateCount $scope, desc
+        
+        desc.on 'change', (op) ->
+            updateCount $scope, desc
 
-$(document).ready () ->
-    sharejs.open 'himmelbjerget', 'json', (error, doc) ->
+@EditorCtrl = ($scope) ->
+    sharejs.open 'himmelbjerget2', 'json', (error, doc) ->
         if not doc.snapshot?
             newDoc = {
                 'title': 'Himmelbjerget'
@@ -33,7 +36,7 @@ $(document).ready () ->
                     console.log error
                 else
                     root.doc = doc
-                    loadText()
+                    loadText $scope
         else
             root.doc = doc
-            loadText()
+            loadText $scope

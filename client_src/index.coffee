@@ -1,38 +1,38 @@
 root = exports ? window
 
-reloadDocInfo = () ->
-    $('#title').empty()
-    $('#title').append doc.snapshot.title
-    $('#artist').empty()
-    $('#artist').append doc.snapshot.artist
-    $('#material').empty()
-    $('#material').append doc.snapshot.material
+reloadDocInfo = ($scope) ->
+    $scope.artwork.title = doc.snapshot.title
+    $scope.artwork.artist = doc.snapshot.artist
+    $scope.artwork.material = doc.snapshot.material
+    $scope.artwork.year = doc.snapshot.year
+    $scope.$apply()
     
-reloadDescription = (text) ->
+reloadDescription = ($scope, text) ->
     #html = markDownConverter.makeHtml text
     text = text.replace /(<([^>]+)>)/ig, ""
-    $('#description').empty()
-    $('#description').append text
+    $scope.artwork.description = text
+    $scope.$apply()
 
-loadText = () ->
-    reloadDocInfo()
+loadText = ($scope) ->
+    reloadDocInfo($scope)
     doc.on 'remoteop', (op) ->
-        reloadDocInfo()
+        reloadDocInfo($scope)
         
     sharejs.open doc.snapshot.description, 'text', (error, desc) ->
-        reloadDescription desc.snapshot
+        reloadDescription $scope, desc.snapshot
         desc.on 'remoteop', (op) ->
-            reloadDescription(desc.snapshot)
+            reloadDescription $scope, desc.snapshot
 
-$(document).ready () ->
-    root.markDownConverter = new Markdown.Converter()
-    sharejs.open 'himmelbjerget', 'json', (error, doc) ->
+@DescriptionCtrl = ($scope) ->
+    window.$scope = $scope
+    $scope.artwork = {}
+    sharejs.open 'himmelbjerget2', 'json', (error, doc) ->
         if not doc.snapshot?
             newDoc = {
-                'title': 'Himmelbjerget'
-                'artist': 'Unknown artist'
-                'year': 'Unknown'
-                'material': 'Oil on canvas'
+                'title': 'Himmelbjerget',
+                'artist': 'Unknown artist',
+                'year': '1898',
+                'material': 'Oil on canvas',
                 'description': 'description'
             }
             doc.set newDoc, (error, rev) ->
@@ -40,7 +40,7 @@ $(document).ready () ->
                     console.log error
                 else
                     root.doc = doc
-                    loadText()
+                    loadText($scope)
         else
             root.doc = doc
-            loadText()
+            loadText($scope)

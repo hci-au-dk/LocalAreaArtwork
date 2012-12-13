@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app>
 <head>
 <meta charset="utf-8" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -13,6 +13,7 @@
   </style>
   
   <script src="lib/jquery.min.js"></script>
+  <script src="lib/angular.min.js"></script>
   <script src="/channel/bcsocket.js"></script>
   <script src="/share/share.js"></script>
   <script src="/share/json.js"></script>
@@ -21,12 +22,13 @@
 </head>
 <body>
 
-<div>
-<h1 id="title">Himmelbjerget</h1>
-<h2><span id='artist'>Unknown artist</span>
-<h3 id="material">Oil on canvas</h3>
+<div ng-controller="DescriptionCtrl">
+    <h1>{{artwork.title}}</h1>
+    <h2>{{artwork.artist}}, {{artwork.year}}</h2>
+    
+    <h3>{{artwork.material}}</h3>
 
-<div id='description'></div>
+    <div id='description'>{{artwork.description}}</div>
 
 </div>
 

@@ -31,6 +31,7 @@ class ArtServer
         app.use express.bodyParser()
         dir = __dirname + '/html'
         app.use express.static dir
+        app.use express.static dir + '/lib'
         return app
             
             

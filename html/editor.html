@@ -1,17 +1,14 @@
-<html>
+<html ng-app>
 <head>
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="viewport" content="width=device-width, user-scalable=no">
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="css/editor.css">
-  <style type="text/css">
-    .gradient {
-       filter: none;
-    }
-  </style>
+</style>
 </head>
 
 <script src="lib/jquery.min.js"></script>
+<script src="lib/angular.min.js"></script>
 <script src="/channel/bcsocket.js"></script>
 <script src="/share/share.js"></script>
 <script src="/share/json.js"></script>
@@ -20,30 +17,13 @@
 
 <body>
 
-<div>
-<fieldset>
+<div ng-controller="EditorCtrl">
 
-<legend><h1 id="title">Himmelbjerget</h1></legend>
-<h2><span id='artist'>Unknown artist</span>
-<h3 id="material">Oil paint</h3>
+<div id="title">{{title}}</div>
 
-<input disabled  maxlength="3" size="3" value="1000" id="counter"><small>Characters remaining</small>
-<div class="block"><textarea rows="400" cols="100" onkeyup="textCounter(this,'counter',1000);" id="description"></textarea>
-</div>
-<script>
-function textCounter(field,field2,maxlimit)
-{
- var countfield = document.getElementById(field2);
- if ( field.value.length > maxlimit ) {
-  field.value = field.value.substring( 0, maxlimit );
-  return false;
- } else {
-  countfield.value = maxlimit - field.value.length;
- }
-}
-</script>
+<div id="counter"><em>Please edit the text as you like, there is room for {{count}} characters more!</em></div>
+<textarea id="description"></textarea>
 
 </div>
-</fieldset>
 </body>
 </html>
