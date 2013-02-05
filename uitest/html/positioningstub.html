@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="lib/positioningstub.js"></script>
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/angular.min.js"></script>
+</head>
+<body ng-controller="StubCtrl">
+
+    <button ng-click="inProximityOfFoo()">In Proximity of Foo</button>
+    <button ng-click="inProximityOfBar()">In Proximity of Bar</button>
+    <button ng-click="noProximity()">No Proximity</button>
+    <button ng-click="twoInProximity()">Two in Proximity</button>
+
+</body>
+</html>

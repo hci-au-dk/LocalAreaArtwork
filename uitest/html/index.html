@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/angular.min.js"></script>
+<script src="lib/index.js"></script>
+</head>
+<body ng-controller="IndexCtrl">
+
+    <div ng-controller="ArtworkController" ng-show="showArtwork">
+        Artwork: {{location}} <a ng-click="closeLocation()">[close]</a>
+    </div>
+    
+    <div ng-controller="MapController" ng-show="showMap">
+        Ground map
+    </div>
+    
+    <div ng-controller="MapController" ng-show="showPopUp">
+        <li ng-repeat="location in availableLocations">
+            <a ng-click="selectLocation(location)">{{location}}</a>
+        </li>
+    </div>
+
+</body>
+</html>
